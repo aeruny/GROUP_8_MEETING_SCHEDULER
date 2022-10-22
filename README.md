@@ -12,6 +12,5 @@ Project description (TBD)
 * Bailey J. Knight
 * Christopher Fechter
 * Eric Sung
-* Kyungjae Lee
 
 ## [Minutes of Meeting](https://docs.google.com/document/d/1ypVhYuDS7_s262KxE2w-8nPcPt8-Sfypk78AmCvdbGA/edit?usp=sharing)
