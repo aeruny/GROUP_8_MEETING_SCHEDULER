@@ -1,4 +1,11 @@
 package gui;
 
-public class ScheduleScreen {
+import javax.swing.*;
+
+public class ScheduleScreen extends JPanel {
+
+    public ScheduleScreen() {
+
+
+    }
 }
