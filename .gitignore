@@ -22,3 +22,6 @@
 *.zip
 *.tar.gz
 *.rar
+
+# Built Classes
+/out/production/GROUP_8_MEETING_SCHEDULER/*
