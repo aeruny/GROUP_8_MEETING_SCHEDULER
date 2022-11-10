@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
@@ -11,13 +13,15 @@ public class SelectionScreen extends JPanel {
     public static final int STUDENT_ROW_WIDTH = 300;
     public static final int STUDENT_ROW_HEIGHT = 40;
 
+
     private ArrayList<Student> studentList;
     private List<JCheckBox> checkBoxList;
     private JCheckBox selectAllCheckBox;
 
-    public SelectionScreen(ArrayList<Student> studentList) {
+    public SelectionScreen(Display display, ArrayList<Student> studentList) {
         this.studentList = studentList;
         this.checkBoxList = new ArrayList<>();
+
         // Heading Panel: (Title, Instruction)
         JPanel headingPanel = new JPanel();
         JLabel titleLabel = new JLabel("Meeting Scheduler");
@@ -51,6 +55,12 @@ public class SelectionScreen extends JPanel {
         // Generate Panel
         JPanel buttonPanel = new JPanel();
         JButton continueButton = new JButton("Generate Schedule");
+        continueButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.transition();
+            }
+        });
         buttonPanel.add(continueButton);
 
         // Add Components
@@ -62,7 +72,6 @@ public class SelectionScreen extends JPanel {
         // Toggle On all check boxes at the start-up
         selectAllCheckBox.doClick();
     }
-
 
     // Create a row panel for a Student
     // Contains a label and a checkbox

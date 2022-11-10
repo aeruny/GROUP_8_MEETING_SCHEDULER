@@ -15,16 +15,20 @@ public class Display extends JFrame {
         this.setResizable(false);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
-        selectionScreen = new SelectionScreen(studentList);
+        selectionScreen = new SelectionScreen(this, studentList);
         scheduleScreen = new ScheduleScreen();
 
         this.add(selectionScreen);
         this.add(scheduleScreen);
         this.pack();
-        this.setContentPane(scheduleScreen);
+        this.setContentPane(selectionScreen);
 
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+    }
+
+    public void transition() {
+        this.setContentPane(scheduleScreen);
     }
 }

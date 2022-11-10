@@ -10,22 +10,45 @@ public class ScheduleScreen extends JPanel {
     private Scheduler scheduler;
 
     public ScheduleScreen() {
-
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.scheduler = new Scheduler();
 
-        JPanel schedulePanel = new JPanel();
-        JPanel controlPanel = new JPanel();
+        JPanel schedulePanel = buildSchedulePanel(new Dimension(400, 400));
+        JPanel controlPanel = buildControlPanel(new Dimension(100, 400));
 
         controlPanel.add(buildSelectionPanel());
 
+        this.add(schedulePanel);
         this.add(controlPanel);
 
 
 
     }
 
-    private JPanel buildControlPanel() {
+    private JPanel buildSchedulePanel(Dimension size) {
+        JPanel schedulePanel = new JPanel();
+        schedulePanel.setMinimumSize(size);
+        schedulePanel.setPreferredSize(size);
+        schedulePanel.setMaximumSize(size);
+
+
+        String[] columnNames = {"Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday", "Saturday", "Sunday"};
+        JTable scheduleTable = new JTable();
+
+
+        schedulePanel.add(scheduleTable);
+        return schedulePanel;
+
+
+    }
+
+    private JPanel buildControlPanel(Dimension size) {
         JPanel controlPanel = new JPanel();
+
+        controlPanel.setMinimumSize(size);
+        controlPanel.setPreferredSize(size);
+        controlPanel.setMaximumSize(size);
 
         return controlPanel;
     }
