@@ -20,8 +20,8 @@ public class Display extends JFrame {
 
         this.add(selectionScreen);
         this.add(scheduleScreen);
-        this.setContentPane(selectionScreen);
         this.pack();
+        this.setContentPane(scheduleScreen);
 
         this.setVisible(true);
         this.setLocationRelativeTo(null);
