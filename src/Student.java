@@ -14,7 +14,7 @@ public class Student {
 
     public Student(String name) {
         this.name = name;
-        this.schedule = new ArrayList<Time>();
+        this.schedule = new ArrayList<>();
     }
 
     public String getName() {
