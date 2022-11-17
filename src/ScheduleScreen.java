@@ -20,7 +20,8 @@ public class ScheduleScreen extends JPanel {
     private JPanel studentPanel;
 
 
-    public ScheduleScreen() {
+    public ScheduleScreen(ArrayList<Student> studentList) {
+        this.studentList = studentList;
         this.scheduler = new Scheduler();
         this.checkBoxList = new ArrayList<>();
 
@@ -93,6 +94,9 @@ public class ScheduleScreen extends JPanel {
         studentScrollPane.setMaximumSize(STUDENT_SELECTION_PANEL_SIZE);
         studentScrollPane.setBorder(BorderFactory.createLineBorder(Color.black));
 
+        for(Student student: studentList) {
+            studentPanel.add(buildStudentRow(student));
+        }
 //        scrollPane.getVerticalScrollBar().setUnitIncrement(12);
 
 
