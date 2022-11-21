@@ -12,26 +12,29 @@ public class Display extends JFrame {
 
     public Display(ArrayList<Student> studentList) {
         this.setTitle("Meeting Scheduler");
-        //this.setResizable(false);
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
-        selectionScreen = new SelectionScreen(this, studentList);
-//        scheduleScreen = new ScheduleScreen();
-
-        this.add(selectionScreen);
-//        this.add(scheduleScreen);
-        this.pack();
-        this.setContentPane(selectionScreen);
-
+        this.setResizable(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+
+
+        selectionScreen = new SelectionScreen(this, studentList);
+        this.add(selectionScreen);
+        this.pack();
+
+        this.setContentPane(selectionScreen);
+//        ControlPanel controlPanel = new ControlPanel(studentList);
+//        this.add(controlPanel);
+//        this.setContentPane(controlPanel);
     }
 
     public void transition(ArrayList<Student> studentList) {
+        System.out.println("Transitioning");
         scheduleScreen = new ScheduleScreen(studentList);
         this.add(scheduleScreen);
         this.setContentPane(scheduleScreen);
-//        scheduleScreen.setStudentList(studentList);
+        this.pack();
+
     }
 }
