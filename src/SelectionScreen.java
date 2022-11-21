@@ -58,7 +58,6 @@ public class SelectionScreen extends JPanel {
         continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                eliminateDisabledStudents(studentList);
                 display.transition(studentList);
             }
         });
@@ -126,10 +125,6 @@ public class SelectionScreen extends JPanel {
         rowPanel.setMaximumSize(new Dimension(STUDENT_ROW_WIDTH - 21, STUDENT_ROW_HEIGHT));
         rowPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         return rowPanel;
-    }
-
-    private void eliminateDisabledStudents(ArrayList<Student> studentList) {
-        studentList.removeIf(student -> !student.getIncluded());
     }
 
 }

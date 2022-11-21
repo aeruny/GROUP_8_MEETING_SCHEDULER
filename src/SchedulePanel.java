@@ -64,9 +64,4 @@ public class SchedulePanel extends JPanel {
     }
     public void updateSchedule(ArrayList<Time> scheduleList) {
     }
-
-
-
-
-
 }
