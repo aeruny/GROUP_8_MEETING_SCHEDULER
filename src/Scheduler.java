@@ -15,6 +15,31 @@ public class Scheduler {
 		studentList.remove(toRemove);
 	}
 	
+	public ArrayList<ArrayList<boolean>> generateSecondBestSchedule(){
+	    ArrayList<ArrayList<ArrayList<boolean>>> timeframes = new ArrayList<ArrayList<ArrayList<boolean>>>;
+	    ArrayList<ArrayList<boolean>> toReturn = new ArrayList<ArrayList<boolean>>;
+	    for (Student stu in studentList){
+	        if(stu.getIncluded()){
+	            stu.toggleIncluded();
+	            timeframes.add(generateSchedule());
+	            stu.toggleIncluded();
+	        }
+	    }
+	    
+	    for(int day=0; day<studentList.get(0).getSchedule().size(), day++){
+	        toReturn.add(new ArrayList<boolean>);
+	        for(int i=0; i<288; i++){
+	            toReturn.get(day).add(False);
+	            for(ArrayList<ArrayList<boolean>> timeframe : timeframes){
+	                if(timeframe.get(day).get(i)==True)
+	                    toReturn.get(day).set(i, True);
+	            }
+	        }
+	    }
+	    return toReturn;
+	}
+	    
+	
 	public ArrayList<ArrayList<boolean>> generateSchedule(ArrayList<ArrayList<boolean>> blockedTimes){
 	    draftTimes=generateSchedule();
 	    for(int day=0; day<draftTimes.size(), day++){
