@@ -13,12 +13,18 @@ public class SchedulePanel extends JPanel {
     private final int FREE = 2;
 
 
-    private static final Dimension SCHEDULE_PANEL_SIZE = new Dimension(500 - 2, 500 - 29);
+    private static final Dimension SCHEDULE_PANEL_SIZE = new Dimension(400 - 2, 500 - 29);
 
     private final JTable scheduleTable;
     private int[][] scheduleStates;
 
     public SchedulePanel() {
+        // Time Label
+        ImageIcon timeLabelImageIcon = new ImageIcon("time label.png");
+        JLabel timeLabel = new JLabel(timeLabelImageIcon);
+        JPanel timeLabelPanel = new JPanel();
+        timeLabelPanel.add(timeLabel);
+
         // Table Contents
         String[] columnNames = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
         int columnCount = 28;
@@ -40,6 +46,8 @@ public class SchedulePanel extends JPanel {
         tablePane.setMinimumSize(SCHEDULE_PANEL_SIZE);
         tablePane.setPreferredSize(SCHEDULE_PANEL_SIZE);
         tablePane.setMaximumSize(SCHEDULE_PANEL_SIZE);
+
+        this.add(timeLabelPanel);
         this.add(tablePane);
     }
 

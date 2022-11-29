@@ -24,9 +24,6 @@ public class Display extends JFrame {
         this.pack();
 
         this.setContentPane(selectionScreen);
-//        ControlPanel controlPanel = new ControlPanel(studentList);
-//        this.add(controlPanel);
-//        this.setContentPane(controlPanel);
     }
 
     public void transition(ArrayList<Student> studentList) {

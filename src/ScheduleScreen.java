@@ -15,6 +15,8 @@ public class ScheduleScreen extends JPanel {
         SchedulePanel schedulePanel = new SchedulePanel();
         ControlPanel controlPanel = new ControlPanel(this, studentList);
 
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        //this.add(timeLabelPanel);
         this.add(schedulePanel);
         this.add(controlPanel);
     }
