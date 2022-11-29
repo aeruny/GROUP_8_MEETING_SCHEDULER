@@ -4,17 +4,17 @@ import java.util.*;
 public class Student {
 
     private String name;
-    private ArrayList<Time> schedule;
+    private ArrayList<ArrayList<Time>> schedule;
     private boolean included = true;
 
-    public Student(String name, ArrayList<Time> schedule) {
+    public Student(String name, ArrayList<ArrayList<Time>> schedule) {
         this.name = name;
         this.schedule = schedule;
     }
 
     public Student(String name) {
         this.name = name;
-        this.schedule = new ArrayList<>();
+        this.schedule = new ArrayList<ArrayList<Time>>();
     }
 
     public String getName() {
@@ -25,11 +25,11 @@ public class Student {
         this.name = name;
     }
 
-    public ArrayList<Time> getSchedule() {
+    public ArrayList<ArrayList<Time>> getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(ArrayList<Time> newSchedule) {
+    public void setSchedule(ArrayList<ArrayList<Time>> newSchedule) {
         schedule = newSchedule;
     }
 

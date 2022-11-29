@@ -15,79 +15,143 @@ public class Scheduler {
 		studentList.remove(toRemove);
 	}
 	
-	public ArrayList<Time> generateSchedule(){
+	public ArrayList<ArrayList<Boolean>> generateSecondBestSchedule(){
+	    ArrayList<ArrayList<ArrayList<Boolean>>> timeframes = new ArrayList<ArrayList<ArrayList<Boolean>>>();
+	    ArrayList<ArrayList<Boolean>> toReturn = new ArrayList<ArrayList<Boolean>>();
+	    for (Student stu : studentList){
+	        if(stu.getIncluded()){
+	            stu.toggleIncluded();
+	            timeframes.add(generateSchedule());
+	            stu.toggleIncluded();
+	        }
+	    }
+	    
+	    for(int day=0; day<studentList.get(0).getSchedule().size(); day++){
+	        toReturn.add(new ArrayList<Boolean>());
+	        for(int i=0; i<28 ; i++){
+	            toReturn.get(day).add(false);
+	            for(ArrayList<ArrayList<Boolean>> timeframe : timeframes){
+	                if(timeframe.get(day).get(i)==true)
+	                    toReturn.get(day).set(i, true);
+	            }
+	        }
+	    }
+	    return toReturn;
+	}
+	    
+	
+	public ArrayList<ArrayList<Boolean>> generateScheduleBlocked(ArrayList<ArrayList<Boolean>> blockedTimes){
+	    ArrayList<ArrayList<Boolean>>draftTimes=generateSchedule();
+	    for(int day=0; day<draftTimes.size(); day++){
+	        for(int i=0; i<28; i++){
+	            if(blockedTimes.get(day).get(i)==true)
+	                draftTimes.get(day).set(i,false);
+	        }    
+	    }
+	    return draftTimes;
+	}
+	
+	public ArrayList<ArrayList<Boolean>> generateSchedule(){return generateSchedule(studentList);};
+	
+	public ArrayList<ArrayList<Boolean>> generateSchedule(ArrayList<Student> theStudents){
+	    
 		ArrayList<Student> limitedStudents = new ArrayList<Student>();
-		for (Student stu: studentList)
+		for (Student stu: theStudents)
 			if(stu.getIncluded())
 				limitedStudents.add(stu);
 		int numReq=limitedStudents.size();
 		
-		ArrayList<Time> result = new ArrayList<Time>(limitedStudents.get(0).getSchedule());
+		ArrayList<ArrayList<Time>> resultsList= new ArrayList<ArrayList<Time>>();
 		
-		for (int i=1; i<numReq; i++) {
-			ArrayList<Time> currentSchedule= new ArrayList<Time>(result);
-			ArrayList<Time> toCompare = new ArrayList<Time>(limitedStudents.get(i).getSchedule());
-			
-			ArrayList<Time> toResult = new ArrayList<Time>();
-			
-			while(toCompare.size()!=0 && currentSchedule.size()!=0) {
-				
-				Time xstart = currentSchedule.get(0);
-				Time xstop = currentSchedule.get(1);
-				Time ystart = toCompare.get(0);
-				Time ystop = toCompare.get(1);
-				
-				if(isBefore(xstart, ystart)) {
-					if(isBefore(xstop, ystart)) {
-						currentSchedule.remove(0);
-						currentSchedule.remove(0);
-					}
-					else {
-						if(isBefore(xstop, ystop)) {
-							toResult.add(ystart);
-							toResult.add(xstop);
-							currentSchedule.remove(0);
-							currentSchedule.remove(0);
-						}
-						else {
-							toResult.add(ystart);
-							toResult.add(ystop);
-							toCompare.remove(0);
-							toCompare.remove(0);
-						}
-					}
-				}
-				else {
-					
-					if(isBefore(ystop, xstart)) {
-						toCompare.remove(0);
-						toCompare.remove(0);
-					}
-					else {
-						if(isBefore(ystop, xstop)) {
-							toResult.add(xstart);
-							toResult.add(ystop);
-							toCompare.remove(0);
-							toCompare.remove(0);
-						}
-						else {
-							toResult.add(xstart);
-							toResult.add(xstop);
-							currentSchedule.remove(0);
-							currentSchedule.remove(0);
-						}
-					}
-					
-					
-				}
-				
-				result=toResult;
-				
-			}
+		for(int day=0; day<limitedStudents.get(0).getSchedule().size(); day++){
+		
+    		ArrayList<Time> result = new ArrayList<Time>(limitedStudents.get(0).getSchedule().get(day));
+    		
+    		for (int i=1; i<numReq; i++) {
+    			ArrayList<Time> currentSchedule= new ArrayList<Time>(result);
+    			ArrayList<Time> toCompare = new ArrayList<Time>(limitedStudents.get(i).getSchedule().get(day));
+    			
+    			ArrayList<Time> toResult = new ArrayList<Time>();
+    			
+    			while(toCompare.size()!=0 && currentSchedule.size()!=0) {
+    				
+    				Time xstart = currentSchedule.get(0);
+    				Time xstop = currentSchedule.get(1);
+    				Time ystart = toCompare.get(0);
+    				Time ystop = toCompare.get(1);
+    				
+    				if(isBefore(xstart, ystart)) {
+    					if(isBefore(xstop, ystart)) {
+    						currentSchedule.remove(0);
+    						currentSchedule.remove(0);
+    					}
+    					else {
+    						if(isBefore(xstop, ystop)) {
+    							toResult.add(ystart);
+    							toResult.add(xstop);
+    							currentSchedule.remove(0);
+    							currentSchedule.remove(0);
+    						}
+    						else {
+    							toResult.add(ystart);
+    							toResult.add(ystop);
+    							toCompare.remove(0);
+    							toCompare.remove(0);
+    						}
+    					}
+    				}
+        				else {
+    					
+    					if(isBefore(ystop, xstart)) {
+    						toCompare.remove(0);
+    						toCompare.remove(0);
+    					}
+    					else {
+    						if(isBefore(ystop, xstop)) {
+    							toResult.add(xstart);
+    							toResult.add(ystop);
+    							toCompare.remove(0);
+    							toCompare.remove(0);
+    						}
+    						else {
+    							toResult.add(xstart);
+    							toResult.add(xstop);
+    							currentSchedule.remove(0);
+    							currentSchedule.remove(0);
+    						}
+    					}
+    					
+    					
+    				}
+    				
+    				result=toResult;
+    				
+    			}
+    		}
+    	    resultsList.add(result);
 		}
 		
-		return result;
+		System.out.println(resultsList);
 		
+		ArrayList<ArrayList<Boolean>> finalTimes = new ArrayList<ArrayList<Boolean>>();
+		for(int day=0; day<limitedStudents.get(0).getSchedule().size();day++){
+		    ArrayList<Boolean> theDay = new ArrayList<Boolean>();
+		    for(int i =0; i<28; i++){
+		        theDay.add(false);
+		        Time beginTime = new Time(8+i/2,(i%2)*30,0);
+		        Time endTime = new Time(8+(i+1)/2,((i+1)%2)*30,0);
+		        
+		        ArrayList<Time> timeList=resultsList.get(day);
+		        boolean isTime=true;
+		        for (int timeNum = 0; timeNum < timeList.size(); timeNum++){
+		            if(timeNum%2==0&&(isBefore(timeList.get(timeNum),beginTime)||timeList.get(timeNum).equals(beginTime))&&(isBefore(endTime,timeList.get(timeNum+1))||timeList.get(timeNum+1).equals(endTime))) {
+		                theDay.set(i,true);
+		            }
+		        }
+		    }
+		    finalTimes.add(theDay);
+		}
+		return finalTimes;
 	}
 	
 	private boolean isBefore(Time first, Time second) {
