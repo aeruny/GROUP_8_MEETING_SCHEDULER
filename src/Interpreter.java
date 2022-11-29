@@ -44,13 +44,13 @@ public class Interpreter {
 
                     studentName = name;
 
-                    System.out.println("Name: " + name);
+                    //System.out.println("Name: " + name);
 
                     NodeList days = element.getElementsByTagName("day");
 
-                    for (int j = 0; j < days.getLength(); j++){
+                    ArrayList<ArrayList<Time>> busyTime = new ArrayList<ArrayList<Time>>();
 
-                        ArrayList<ArrayList<Time>> busyTime = new ArrayList<ArrayList<Time>>();
+                    for (int j = 0; j < days.getLength(); j++){
 
                         Node day = days.item(j);
 
@@ -58,7 +58,7 @@ public class Interpreter {
                             Element dayElement = (Element) day;
 
                             String id = dayElement.getAttributes().getNamedItem("id").getNodeValue();
-                            System.out.println("Day: " + id);
+                            //System.out.println("Day: " + id);
 
                             NodeList classes = dayElement.getElementsByTagName("class");
 
@@ -103,19 +103,18 @@ public class Interpreter {
 
                                     Time startTime = new Time(startHour, startMinute, startSecond);
                                     timeFrame.add(startTime);
-                                    System.out.println("Start Time: " + startHour + startMinute + startSecond);
+                                    //System.out.println("Start Time: " + startHour + startMinute + startSecond);
                                     Time endTime = new Time(endHour, endMinute, endSecond);
                                     timeFrame.add(endTime);
-                                    System.out.println("End Time: " + endHour + endMinute + endSecond);
+                                    //System.out.println("End Time: " + endHour + endMinute + endSecond);
                                 }
 
                                 busyTime.add(timeFrame);
                             }
                         }
-
-                        Student newStudent = new Student(name, busyTime);
-                        studentArray.add(newStudent);
                     }
+                    Student newStudent = new Student(name, busyTime);
+                    studentArray.add(newStudent);
                 }
             }
 
