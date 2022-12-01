@@ -14,3 +14,5 @@ Project description (TBD)
 * Eric Sung
 
 ## [Minutes of Meeting](https://docs.google.com/document/d/1ypVhYuDS7_s262KxE2w-8nPcPt8-Sfypk78AmCvdbGA/edit?usp=sharing)
+
+## [Project Presentation](https://docs.google.com/presentation/d/1lOJ_urYmh8CjYgshqCj3wut4bBxIp6RyhLScwKg4e6c/edit?usp=sharing)
