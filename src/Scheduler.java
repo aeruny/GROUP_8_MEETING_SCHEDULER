@@ -48,10 +48,8 @@ public class Scheduler {
 	    	fakeStudentSchedule.add(new ArrayList<Time>());
 	    	if(dayIterator==day) {
 	    		ArrayList<Time> here = fakeStudentSchedule.get(dayIterator);
-	    		here.add(new Time(0));
 	    		here.add(startTime);
 	    		here.add(endTime);
-	    		here.add(new Time(23, 59, 59));
 	    	}
 	    }
 	    
@@ -129,9 +127,12 @@ public class Scheduler {
     		
     		for (int i=1; i<numReq; i++) {
     			ArrayList<Time> currentSchedule= new ArrayList<Time>(result);
+    			   			
+    			
     			ArrayList<Time> toCompare = new ArrayList<Time>(limitedStudents.get(i).getSchedule().get(day));
     			
     			ArrayList<Time> toResult = new ArrayList<Time>();
+    			
     			
     			while(toCompare.size()!=0 && currentSchedule.size()!=0) {
     				
