@@ -6,7 +6,9 @@ public class Scheduler {
 	private ArrayList<Student> studentList;
 	
 	public Scheduler() {studentList= new ArrayList<Student>();}
-	
+	public Scheduler(ArrayList<Student> studentList) {
+		this.studentList = studentList;
+	}
 	public void addStudent(Student toAdd) {
 		studentList.add(toAdd);
 	}
