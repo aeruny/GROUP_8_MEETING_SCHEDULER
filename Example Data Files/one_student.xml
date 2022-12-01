@@ -107,5 +107,6 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Friday"></day>
 	</student>
 </schedules>
