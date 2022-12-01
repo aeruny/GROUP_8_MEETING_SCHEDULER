@@ -16,9 +16,12 @@ public class SchedulePanel extends JPanel {
     private static final Dimension SCHEDULE_PANEL_SIZE = new Dimension(400 - 2, 500 - 29);
 
     private final JTable scheduleTable;
-    private int[][] scheduleStates;
+//    private int[][] scheduleStates;
+    private ArrayList<ArrayList<Boolean>> scheduleStates;
 
-    public SchedulePanel() {
+    public SchedulePanel(ArrayList<ArrayList<Boolean>> schedule) {
+        this.scheduleStates = schedule;
+
         // Time Label
         ImageIcon timeLabelImageIcon = new ImageIcon("time label.png");
         JLabel timeLabel = new JLabel(timeLabelImageIcon);
@@ -32,7 +35,6 @@ public class SchedulePanel extends JPanel {
         for(int i = 0; i < columnCount; i++) {
             data[i] = new Object[]{"", "", "", "", ""};
         }
-        scheduleStates = new int[28][5];
 
 
         // Instantiate schedule table
@@ -57,19 +59,15 @@ public class SchedulePanel extends JPanel {
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 TableModel model = table.getModel();
-                switch (scheduleStates[row][column]) {
-                    case NONE -> c.setBackground(Color.white);
-                    case OCCUPIED -> c.setBackground(Color.RED.darker());
-                    case FREE -> c.setBackground(Color.green);
-                }
+                if(scheduleStates.get(row).get(column))
+                    c.setBackground(Color.RED.darker());
+                else
+                    c.setBackground(Color.green);
                 return c;
             }
         };
     }
-
-    public void setScheduleStates(int[][] scheduleStates) {
-        this.scheduleStates = scheduleStates;
-    }
-    public void updateSchedule(ArrayList<Time> scheduleList) {
+    public void updateSchedule(ArrayList<ArrayList<Boolean>> schedule) {
+        this.scheduleStates = schedule;
     }
 }

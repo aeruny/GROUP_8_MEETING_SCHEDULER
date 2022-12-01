@@ -11,12 +11,16 @@ public class ScheduleScreen extends JPanel {
 
     public ScheduleScreen(ArrayList<Student> studentList) {
         this.scheduler = new Scheduler();
-
-        SchedulePanel schedulePanel = new SchedulePanel();
+        ArrayList<ArrayList<Boolean>> schedule = scheduler.generateSchedule(studentList);
+        for(ArrayList<Boolean> day: schedule) {
+            for(boolean time: day) {
+                System.out.println(time);
+            }
+        }
+        SchedulePanel schedulePanel = new SchedulePanel(schedule);
         ControlPanel controlPanel = new ControlPanel(this, studentList);
 
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        //this.add(timeLabelPanel);
         this.add(schedulePanel);
         this.add(controlPanel);
     }
