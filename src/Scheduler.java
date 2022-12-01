@@ -75,15 +75,11 @@ public class Scheduler {
 	    for (Student stu : studentList){
 	        if(stu.getIncluded()){
 	            stu.toggleIncluded();
-	    	    ArrayList<Student> newStudentList = new ArrayList<Student>(studentList);
-	    	    newStudentList.add(new Student("Blocked Time", fakeStudentSchedule));
-	            timeframes.add(generateSchedule(newStudentList));
+	            timeframes.add(generateScheduleBlocked(day, startTime, endTime));
 	            stu.toggleIncluded();
 	        }
 	    }
 	    
-	    //Student Blocked = new Student("Blocked Time", fakeStudentSchedule
-
 	    	    
 	    for(int dayIterator=0; dayIterator<studentList.get(0).getSchedule().size(); dayIterator++){
 	        toReturn.add(new ArrayList<Boolean>());
@@ -99,17 +95,6 @@ public class Scheduler {
 	    
 	    return toReturn;
 	    
-	    /*
-	    ArrayList<Student> newStudentList = new ArrayList<Student>(studentList);
-	    newStudentList.add(new Student("Blocked Time",fakeStudentSchedule));
-	    ArrayList<ArrayList<Boolean>> finalResult = new ArrayList<ArrayList<Boolean>>(toReturn);
-	    for (ArrayList<Boolean> h : finalResult) {
-	    	for (Boolean boo : h) {
-	    		boo=!boo;
-	    	}
-	    }
-	    
-	    return finalResult;*/
 	    
 	}
 	
