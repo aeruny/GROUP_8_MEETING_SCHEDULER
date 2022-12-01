@@ -3,9 +3,7 @@
 This is a project repository for the university course **CS321 - Object Oriented
 Programming in Java (Fall 2022)**.
 
-## Project Name (TBD)
-
-Project description (TBD)
+The program we are developing will be able to take in all of the schedules of group members so that it can output all of the free time that these students have, helping them collaborate easier. Initially, for our real-world data set, the plan is to use our personal weekly college schedules from the members of our group, and if necessary, we can ask other students to provide their own schedules to add to the pool of options.
 
 ## Team Members
 
