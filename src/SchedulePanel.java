@@ -21,7 +21,6 @@ public class SchedulePanel extends JPanel {
 
     public SchedulePanel(ArrayList<ArrayList<Boolean>> schedule) {
         this.scheduleStates = schedule;
-        System.out.println("Row: " + scheduleStates.size() + "  Column " + scheduleStates.get(0).size());
         // Time Label
         ImageIcon timeLabelImageIcon = new ImageIcon("time label.png");
         JLabel timeLabel = new JLabel(timeLabelImageIcon);
@@ -59,7 +58,7 @@ public class SchedulePanel extends JPanel {
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 TableModel model = table.getModel();
-                if(row < 5 && scheduleStates.get(row).get(column))
+                if(scheduleStates.get(column).get(row))
                     c.setBackground(Color.green);
                 else
                     c.setBackground(Color.RED.darker());
