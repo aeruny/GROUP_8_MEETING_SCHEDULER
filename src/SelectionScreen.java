@@ -55,12 +55,7 @@ public class SelectionScreen extends JPanel {
         // Generate Panel
         JPanel buttonPanel = new JPanel();
         JButton continueButton = new JButton("Generate Schedule");
-        continueButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                display.transition(studentList);
-            }
-        });
+        continueButton.addActionListener(e -> display.transition(studentList));
         buttonPanel.add(continueButton);
 
         // Add Components
@@ -80,12 +75,8 @@ public class SelectionScreen extends JPanel {
         JLabel rowLabel = new JLabel(student.getName());
         JCheckBox rowCheckBox = new JCheckBox();
 
-        rowCheckBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                student.setIncluded(e.getStateChange() == ItemEvent.SELECTED);
-//                System.out.println(student.getName() + ":  " + student.getIncluded());
-            }
+        rowCheckBox.addItemListener(e -> {
+            student.setIncluded(e.getStateChange() == ItemEvent.SELECTED);
         });
         checkBoxList.add(rowCheckBox);
 

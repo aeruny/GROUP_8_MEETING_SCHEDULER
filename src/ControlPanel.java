@@ -177,7 +177,6 @@ public class ControlPanel extends JPanel {
     private Time indexToTime(int index) {
         int hour = 8 + (int) (index / 2);
         int minute = index % 2 == 0 ? 0 : 30;
-        System.out.println("Test:   " + hour + ":" + minute);
         return Scheduler.toTime(hour, minute);
     }
 

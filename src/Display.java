@@ -26,8 +26,13 @@ public class Display extends JFrame {
         this.setContentPane(selectionScreen);
     }
 
+    private void eliminateStudents(ArrayList<Student> studentList) {
+        studentList.removeIf(student -> !student.getIncluded());
+    }
+
     public void transition(ArrayList<Student> studentList) {
         System.out.println("Transitioning");
+        eliminateStudents(studentList);
         scheduleScreen = new ScheduleScreen(studentList);
         this.add(scheduleScreen);
         this.setContentPane(scheduleScreen);

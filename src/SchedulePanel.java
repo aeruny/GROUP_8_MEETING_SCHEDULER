@@ -1,8 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableModel;
 import java.awt.*;
-import java.sql.Time;
 import java.util.ArrayList;
 
 public class SchedulePanel extends JPanel {
@@ -43,6 +41,7 @@ public class SchedulePanel extends JPanel {
 
         this.add(timeLabelPanel);
         this.add(tablePane);
+        this.repaint();
     }
 
     private DefaultTableCellRenderer createScheduleTableRenderer() {
@@ -50,16 +49,16 @@ public class SchedulePanel extends JPanel {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                TableModel model = table.getModel();
                 if(scheduleStates.get(column).get(row))
                     c.setBackground(Color.green);
                 else
-                    c.setBackground(Color.RED.darker());
+                    c.setBackground(Color.RED);
                 return c;
             }
         };
     }
     public void updateSchedule(ArrayList<ArrayList<Boolean>> schedule) {
         this.scheduleStates = schedule;
+        this.repaint();
     }
 }
