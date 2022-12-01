@@ -65,10 +65,8 @@ public class Scheduler {
 	    	fakeStudentSchedule.add(new ArrayList<Time>());
 	    	if(dayIterator==day) {
 	    		ArrayList<Time> here = fakeStudentSchedule.get(dayIterator);
-	    		here.add(new Time(0));
 	    		here.add(startTime);
 	    		here.add(endTime);
-	    		here.add(new Time(23, 59, 59));
 	    	}
 	    }
 	    
