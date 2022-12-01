@@ -211,6 +211,11 @@ public class Scheduler {
 		}
 		return finalTimes;
 	}
+
+	public static Time toTime(int hour, int minute) {
+		return new Time(hour, minute, 0);
+	}
+
 	
 	private boolean isBefore(Time first, Time second) {
 		if(first.compareTo(second)<0)

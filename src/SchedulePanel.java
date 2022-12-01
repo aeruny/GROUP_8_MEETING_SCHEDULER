@@ -7,16 +7,9 @@ import java.util.ArrayList;
 
 public class SchedulePanel extends JPanel {
 
-    // Cell States
-    private final int NONE = 0;
-    private final int OCCUPIED = 1;
-    private final int FREE = 2;
-
 
     private static final Dimension SCHEDULE_PANEL_SIZE = new Dimension(400 - 2, 500 - 29);
 
-    private final JTable scheduleTable;
-//    private int[][] scheduleStates;
     private ArrayList<ArrayList<Boolean>> scheduleStates;
 
     public SchedulePanel(ArrayList<ArrayList<Boolean>> schedule) {
@@ -37,7 +30,7 @@ public class SchedulePanel extends JPanel {
 
 
         // Instantiate schedule table
-        this.scheduleTable = new JTable(data, columnNames);
+        JTable scheduleTable = new JTable(data, columnNames);
         scheduleTable.setDefaultEditor(Object.class, null);
         scheduleTable.setDefaultRenderer(Object.class, createScheduleTableRenderer());
 

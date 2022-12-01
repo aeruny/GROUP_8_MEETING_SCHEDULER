@@ -7,7 +7,7 @@ public class Display extends JFrame {
     private SelectionScreen selectionScreen;
     private ScheduleScreen scheduleScreen;
 
-    public static final int WIDTH = 750;
+    public static final int WIDTH = 800;
     public static final int HEIGHT = 550;
 
     public Display(ArrayList<Student> studentList) {
