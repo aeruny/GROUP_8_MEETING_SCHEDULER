@@ -50,8 +50,7 @@ public class Interpreter {
 
                     ArrayList<ArrayList<Time>> weekDays = new ArrayList<ArrayList<Time>>();
 
-                  //  for (int j = 0; j < days.getLength(); j++){
-                    for (int j = 0; j < 5; j++){
+                    for (int j = 0; j < days.getLength(); j++){
                         Node day = days.item(j);
 
                         if (day.getNodeType() == Node.ELEMENT_NODE){
@@ -60,65 +59,62 @@ public class Interpreter {
                             String id = dayElement.getAttributes().getNamedItem("id").getNodeValue();
                             //System.out.println("Day: " + id);
 
-                            if (id == "Monday" && j == 0 || id == "Tuesday" && j == 1 || id == "Wednesday" && j == 2 || id == "Thursday" && j == 3 || id == "Friday" && j == 4){
-
                                 NodeList classes = dayElement.getElementsByTagName("class");
 
                                 ArrayList<Time> timeFrameDay = new ArrayList<Time>();
+                                if (classes.getLength() == 0){
+                                    weekDays.add(timeFrameDay);
+                                    System.out.println("Null Day Added");
+                                } else {
 
-                                for (int k = 0; k < classes.getLength(); k++){
+                                    for (int k = 0; k < classes.getLength(); k++) {
 
-                                    Node cla = classes.item(k);
+                                        Node cla = classes.item(k);
 
-                                    if (cla.getNodeType() == Node.ELEMENT_NODE){
-                                        Element classElement = (Element) cla;
+                                        if (cla.getNodeType() == Node.ELEMENT_NODE) {
+                                            Element classElement = (Element) cla;
 
-                                        NodeList startTimes = classElement.getElementsByTagName("starttime");
+                                            NodeList startTimes = classElement.getElementsByTagName("starttime");
 
-                                        Integer startHour = 0, startMinute = 0, startSecond = 0;
+                                            Integer startHour = 0, startMinute = 0, startSecond = 0;
 
-                                        Node sta = startTimes.item(0);
+                                            Node sta = startTimes.item(0);
 
-                                        if (sta.getNodeType() == Node.ELEMENT_NODE) {
+                                            if (sta.getNodeType() == Node.ELEMENT_NODE) {
 
-                                            Element startElement = (Element) sta;
+                                                Element startElement = (Element) sta;
 
-                                            startHour = Integer.parseInt(startElement.getElementsByTagName("hours").item(0).getTextContent());
-                                            startMinute = Integer.parseInt(startElement.getElementsByTagName("minutes").item(0).getTextContent());
-                                            startSecond = Integer.parseInt(startElement.getElementsByTagName("seconds").item(0).getTextContent());
+                                                startHour = Integer.parseInt(startElement.getElementsByTagName("hours").item(0).getTextContent());
+                                                startMinute = Integer.parseInt(startElement.getElementsByTagName("minutes").item(0).getTextContent());
+                                                startSecond = Integer.parseInt(startElement.getElementsByTagName("seconds").item(0).getTextContent());
+                                            }
+
+                                            NodeList endTimes = classElement.getElementsByTagName("endtime");
+
+                                            Integer endHour = 0, endMinute = 0, endSecond = 0;
+
+                                            Node en = endTimes.item(0);
+
+                                            if (en.getNodeType() == Node.ELEMENT_NODE) {
+
+                                                Element endElement = (Element) en;
+
+                                                endHour = Integer.parseInt(endElement.getElementsByTagName("hours").item(0).getTextContent());
+                                                endMinute = Integer.parseInt(endElement.getElementsByTagName("minutes").item(0).getTextContent());
+                                                endSecond = Integer.parseInt(endElement.getElementsByTagName("seconds").item(0).getTextContent());
+                                            }
+
+                                            Time startTime = new Time(startHour, startMinute, startSecond);
+                                            timeFrameDay.add(startTime);
+                                            System.out.println("Start Time: " + startHour + startMinute + startSecond);
+                                            Time endTime = new Time(endHour, endMinute, endSecond);
+                                            timeFrameDay.add(endTime);
+                                            System.out.println("End Time: " + endHour + endMinute + endSecond);
                                         }
-
-                                        NodeList endTimes = classElement.getElementsByTagName("endtime");
-
-                                        Integer endHour = 0, endMinute = 0, endSecond = 0;
-
-                                        Node en = endTimes.item(0);
-
-                                        if (en.getNodeType() == Node.ELEMENT_NODE){
-
-                                            Element endElement = (Element) en;
-
-                                            endHour = Integer.parseInt(endElement.getElementsByTagName("hours").item(0).getTextContent());
-                                            endMinute = Integer.parseInt(endElement.getElementsByTagName("minutes").item(0).getTextContent());
-                                            endSecond = Integer.parseInt(endElement.getElementsByTagName("seconds").item(0).getTextContent());
-                                        }
-
-                                        Time startTime = new Time(startHour, startMinute, startSecond);
-                                        timeFrameDay.add(startTime);
-                                        //System.out.println("Start Time: " + startHour + startMinute + startSecond);
-                                        Time endTime = new Time(endHour, endMinute, endSecond);
-                                        timeFrameDay.add(endTime);
-                                        //System.out.println("End Time: " + endHour + endMinute + endSecond);
                                     }
+                                    weekDays.add(timeFrameDay);
+                                    System.out.println("Day Added");
                                 }
-                                weekDays.add(timeFrameDay);
-                                //System.out.println("Day Added");
-
-                            } else {
-                                ArrayList<Time> timeFrameDay = new ArrayList<Time>();
-                                weekDays.add(timeFrameDay);
-                                //System.out.println("Day Added");
-                            }
                         }
                     }
                     Student newStudent = new Student(name, weekDays);
