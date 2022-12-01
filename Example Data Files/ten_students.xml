@@ -107,6 +107,7 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Friday"></day>
 	</student>
 	<student>
 		<name>Eric Sung</name>
@@ -214,6 +215,7 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Friday"></day>
 	</student>
 	<student>
 		<name>Bailey Knight</name>
@@ -321,6 +323,7 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Friday"></day>
 	</student>
 	<student>
 		<name>John Doe</name>
@@ -374,6 +377,7 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Tuesday"></day>
 		<day id = "Wednesday">
 			<class>
 				<starttime>
@@ -424,6 +428,8 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Thursday"></day>
+		<day id = "Friday"></day>
 	</student>
 	<student>
 		<name>Samantha Smith</name>
@@ -524,6 +530,7 @@
 	</student>
 	<student>
 		<name>Ryan Patty</name>
+		<day id = "Monday"></day>
 		<day id = "Tuesday">
 			<class>
 				<starttime>
@@ -538,6 +545,7 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Wednesday"></day>
 		<day id = "Thursday">
 			<class>
 				<starttime>
@@ -552,6 +560,7 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Friday"></day>
 	</student>
 	<student>
 		<name>Roland Streep</name>
@@ -563,7 +572,7 @@
 					<seconds>00</seconds>
 				</starttime>
 				<endtime>
-					<hours>012</hours>
+					<hours>12</hours>
 					<minutes>30</minutes>
 					<seconds>00</seconds>
 				</endtime>
@@ -603,7 +612,7 @@
 					<seconds>00</seconds>
 				</starttime>
 				<endtime>
-					<hours>012</hours>
+					<hours>12</hours>
 					<minutes>30</minutes>
 					<seconds>00</seconds>
 				</endtime>
@@ -635,6 +644,7 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Friday"></day>
 	</student>
 	<student>
 		<name>Copy Cat</name>
@@ -688,6 +698,7 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Tuesday"></day>
 		<day id = "Wednesday">
 			<class>
 				<starttime>
@@ -738,6 +749,8 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Thursday"></day>
+		<day id = "Friday"></day>
 	</student>
 	<student>
 		<name>George Washington</name>
@@ -838,6 +851,7 @@
 	</student>
 	<student>
 		<name>Abraham Lincoln</name>
+		<day id = "Monday"></day>
 		<day id = "Tuesday">
 			<class>
 				<starttime>
@@ -864,6 +878,7 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Wednesday"></day>
 		<day id = "Thursday">
 			<class>
 				<starttime>
@@ -890,5 +905,6 @@
 				</endtime>
 			</class>
 		</day>
+		<day id = "Friday"></day>
 	</student>
 </schedules>
