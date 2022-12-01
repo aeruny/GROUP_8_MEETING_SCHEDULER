@@ -39,16 +39,74 @@ public class Scheduler {
 	    return toReturn;
 	}
 	    
-	
-	public ArrayList<ArrayList<Boolean>> generateScheduleBlocked(ArrayList<ArrayList<Boolean>> blockedTimes){
-	    ArrayList<ArrayList<Boolean>>draftTimes=generateSchedule();
-	    for(int day=0; day<draftTimes.size(); day++){
-	        for(int i=0; i<28; i++){
-	            if(blockedTimes.get(day).get(i)==true)
-	                draftTimes.get(day).set(i,false);
-	        }    
+	public ArrayList<ArrayList<Boolean>> generateScheduleBlocked(int day, Time startTime, Time endTime){
+	    ArrayList<ArrayList<Time>>fakeStudentSchedule=new ArrayList<ArrayList<Time>>();
+	    
+	    for(int dayIterator=0; dayIterator<5; dayIterator++){
+	    	fakeStudentSchedule.add(new ArrayList<Time>());
+	    	if(dayIterator==day) {
+	    		ArrayList<Time> here = fakeStudentSchedule.get(dayIterator);
+	    		here.add(new Time(0));
+	    		here.add(startTime);
+	    		here.add(endTime);
+	    		here.add(new Time(23, 59, 59));
+	    	}
 	    }
-	    return draftTimes;
+	    
+	    ArrayList<Student> newStudentList = new ArrayList<Student>(studentList);
+	    newStudentList.add(new Student("Blocked Time",fakeStudentSchedule));
+	    return generateSchedule(newStudentList);
+	}
+	
+	public ArrayList<ArrayList<Boolean>> generateSecondScheduleBlocked(int day, Time startTime, Time endTime){
+	    ArrayList<ArrayList<Time>>fakeStudentSchedule=new ArrayList<ArrayList<Time>>();
+	    
+	    for(int dayIterator=0; dayIterator<5; dayIterator++){
+	    	fakeStudentSchedule.add(new ArrayList<Time>());
+	    	if(dayIterator==day) {
+	    		ArrayList<Time> here = fakeStudentSchedule.get(dayIterator);
+	    		here.add(new Time(0));
+	    		here.add(startTime);
+	    		here.add(endTime);
+	    		here.add(new Time(23, 59, 59));
+	    	}
+	    }
+	    
+	    Student fakeStudent=new Student("Blocked Time", fakeStudentSchedule);
+	       
+	    ArrayList<ArrayList<ArrayList<Boolean>>> timeframes = new ArrayList<ArrayList<ArrayList<Boolean>>>();
+	    ArrayList<ArrayList<Boolean>> toReturn = new ArrayList<ArrayList<Boolean>>();
+	    for (Student stu : studentList){
+	        if(stu.getIncluded()){
+	            stu.toggleIncluded();
+	    	    ArrayList<Student> newStudentList = new ArrayList<Student>(studentList);
+	    	    newStudentList.add(new Student("Blocked Time",fakeStudentSchedule));
+	            timeframes.add(generateSchedule(newStudentList));
+	            stu.toggleIncluded();
+	        }
+	    }
+	    
+
+	    for (ArrayList<ArrayList<Boolean>> timeframe : timeframes) {
+	    	
+	    }
+	    	    
+	    for(int dayIterator=0; dayIterator<studentList.get(0).getSchedule().size(); dayIterator++){
+	        toReturn.add(new ArrayList<Boolean>());
+	        for(int i=0; i<28 ; i++){
+	            toReturn.get(dayIterator).add(false);
+	            for(ArrayList<ArrayList<Boolean>> timeframe : timeframes){
+	                if(timeframe.get(dayIterator).get(i)==true)
+	                    toReturn.get(dayIterator).set(i, true);
+	            }
+	        }
+	    }
+	    
+	    
+	    
+	    ArrayList<Student> newStudentList = new ArrayList<Student>(studentList);
+	    newStudentList.add(new Student("Blocked Time",fakeStudentSchedule));
+	    return generateSchedule(newStudentList);
 	}
 	
 	public ArrayList<ArrayList<Boolean>> generateSchedule(){return generateSchedule(studentList);};
