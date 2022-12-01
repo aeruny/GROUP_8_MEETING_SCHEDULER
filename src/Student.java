@@ -7,9 +7,14 @@ public class Student {
     private ArrayList<ArrayList<Time>> schedule;
     private boolean included = true;
 
-    public Student(String name, ArrayList<ArrayList<Time>> schedule) {
+    public Student(String name, ArrayList<ArrayList<Time>> providedschedule) {
         this.name = name;
-        this.schedule = schedule;
+        ArrayList<ArrayList<Time>> newSchedule = new ArrayList<ArrayList<Time>>(providedschedule);
+    	for (ArrayList<Time> day: newSchedule) {
+    		day.add(0, new Time(0));
+    		day.add(new Time(23, 59, 59));
+    	}
+    	this.schedule=newSchedule;
     }
 
     public Student(String name) {
