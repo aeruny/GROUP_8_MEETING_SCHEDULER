@@ -19,13 +19,33 @@ public class Scheduler {
 	
 	public ArrayList<ArrayList<Boolean>> generateSecondBestSchedule(){
 	    ArrayList<ArrayList<ArrayList<Boolean>>> timeframes = new ArrayList<ArrayList<ArrayList<Boolean>>>();
-	    ArrayList<ArrayList<Boolean>> toReturn = new ArrayList<ArrayList<Boolean>>();
+	    ArrayList<ArrayList<Boolean>> toReturn = new ArrayList<ArrayList<Boolean>>(); 
+	    
+	    boolean testFlag=false;
+	    boolean skipFlag=false;
 	    for (Student stu : studentList){
-	        if(stu.getIncluded()){
-	            stu.toggleIncluded();
-	            timeframes.add(generateSchedule());
-	            stu.toggleIncluded();
-	        }
+	    	if(stu.getIncluded()){
+	    		if(testFlag) {
+	    			skipFlag=true;
+	    		}
+	    		else 
+	    			testFlag=true;
+	    	}
+	    }
+	    
+	    if(skipFlag) {
+	    	
+		  	    for (Student stu : studentList){
+		        if(stu.getIncluded()){
+		            stu.toggleIncluded();
+		            timeframes.add(generateSchedule());
+		            stu.toggleIncluded();
+		        }
+		    }
+	    }
+	    
+	    else {
+	    	timeframes.add(generateSchedule());
 	    }
 	    
 	    for(int day=0; day<studentList.get(0).getSchedule().size(); day++){
@@ -40,6 +60,7 @@ public class Scheduler {
 	    }
 	    return toReturn;
 	}
+	
 	    
 	public ArrayList<ArrayList<Boolean>> generateScheduleBlocked(int day, Time startTime, Time endTime){
 	    ArrayList<ArrayList<Time>>fakeStudentSchedule=new ArrayList<ArrayList<Time>>();
@@ -72,13 +93,34 @@ public class Scheduler {
 	    	       
 	    ArrayList<ArrayList<ArrayList<Boolean>>> timeframes = new ArrayList<ArrayList<ArrayList<Boolean>>>();
 	    ArrayList<ArrayList<Boolean>> toReturn = new ArrayList<ArrayList<Boolean>>();
+	    
+	    boolean testFlag=false;
+	    boolean skipFlag=false;
 	    for (Student stu : studentList){
-	        if(stu.getIncluded()){
-	            stu.toggleIncluded();
-	            timeframes.add(generateScheduleBlocked(day, startTime, endTime));
-	            stu.toggleIncluded();
-	        }
+	    	if(stu.getIncluded()){
+	    		if(testFlag) {
+	    			skipFlag=true;
+	    		}
+	    		else 
+	    			testFlag=true;
+	    	}
 	    }
+	    
+	    if(skipFlag) {
+	    	
+	    	 for (Student stu : studentList){
+	 	        if(stu.getIncluded()){
+	 	            stu.toggleIncluded();
+	 	            timeframes.add(generateScheduleBlocked(day, startTime, endTime));
+	 	            stu.toggleIncluded();
+	 	        }
+	 	    }
+	    }
+        
+    else {
+    	timeframes.add(generateScheduleBlocked(day, startTime, endTime));
+    }
+	    	   	       
 	    
 	    	    
 	    for(int dayIterator=0; dayIterator<studentList.get(0).getSchedule().size(); dayIterator++){
